@@ -15,14 +15,16 @@ $servername = "localhost";
 			}
 			echo "Connected successfully<br>";
 
-if(isset($_POST['name'])){ $student = $_POST['name']; }
+if(isset($_POST['name']))
 
-$sql= "SELECT * FROM `studentdata` where name like $student";
+{ $student = $_POST['name']; }
+
+$sql= "SELECT * FROM `studentdata` where name like '$student'";
 $result = mysqli_query($conn,$sql);	
-
-$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-printf ("%s (%s)\n",$row["name"],$row["parentname"],$row["email"]);
-
+while ($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+{
+echo $row["name"],$row["parentname"],$row["email"];
+}
 
 
 ?>
